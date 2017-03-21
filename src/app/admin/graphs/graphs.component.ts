@@ -21,15 +21,18 @@ export class GraphsComponent implements OnInit {
 
     ngOnInit() {
         this.getAllEventosAdmin();
-        this.cubes.push(new cubeGraph("Eventos", this.amountEventos, 'aqua', 'ion-calendar'));
-        this.cubes.push(new cubeGraph("Users", 75, 'yellow', 'ion-person-stalker'));
+
+        this.cubes.push(new cubeGraph("Users", 0, 'yellow', 'ion-person-stalker'));
+        this.cubes.push(new cubeGraph("Eventos - Show", 0, 'teal', 'ion-ios-star-outline'));
+        this.cubes.push(new cubeGraph("Eventos - Music", 0, 'green', 'ion-ios-musical-notes'));
+        this.cubes.push(new cubeGraph("Eventos - Party", 0, 'red', 'ion-ios-people'));
     }
 
     getAllEventosAdmin() {
         this.eventosService.getEventos()
             .subscribe(eventos => {
                 this.eventos = eventos;
-                this.amountEventos = eventos.length;
+                this.cubes.push(new cubeGraph("Total Eventos", this.eventos.length, 'aqua', 'ion-calendar'));
             });
     }
 
