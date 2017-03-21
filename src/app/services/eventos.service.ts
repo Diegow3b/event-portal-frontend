@@ -9,7 +9,7 @@ export class EventosService {
 
     constructor(private http: Http) {
         console.log('Evento Service Initialized...');
-        this.host = process.env.PROD || 'http://localhost:3000';
+        this.host =  process.env.PROD ? 'https://evento-portal-backend.herokuapp.com ':'http://localhost:3000';
     }
 
     getEventos() {
