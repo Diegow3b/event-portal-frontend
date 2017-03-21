@@ -1,0 +1,13 @@
+.content {
+    margin: 0 28%;
+}
+
+.box-primary li{
+    text-align: center;
+}
+
+.container-fluid {
+    padding-top: 7px;
+    margin: 0 -15px;
+    margin-top: -92px !important;
+}

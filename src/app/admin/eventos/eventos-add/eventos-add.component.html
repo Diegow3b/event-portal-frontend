@@ -1,0 +1,81 @@
+<div class="wrapper">
+
+    <form (submit)="addEvento($event)">
+        <div class="box box-info">
+
+            <div class="box-header with-border">
+                <h3 class="box-title">Add Evento</h3>
+            </div>
+
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Title</label>
+                    <input [(ngModel)]="title" type="text" class="form-control" id="exampleInputEmail1" placeholder="Title" [ngModelOptions]="{standalone: true}">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Producer</label>
+                    <input [(ngModel)]="producer" type="text" class="form-control" id="exampleInputEmail1" placeholder="Producer" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">URL Image</label>
+                    <input [(ngModel)]="imagem" type="text" class="form-control" id="exampleInputEmail1" placeholder="Place a url image" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Location</label>
+                    <input [(ngModel)]="location" type="text" class="form-control" id="exampleInputEmail1" placeholder="Location" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">City</label>
+                    <input [(ngModel)]="city" type="text" class="form-control" id="exampleInputEmail1" placeholder="City" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select [(ngModel)]="category" class="form-control" placeholder="Select a Category" [ngModelOptions]="{standalone: true}">
+                        <option value="music" selected>Music</option>
+                        <option value="show">Show</option>
+                        <option value="party">Party</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+
+                    <label>Start Date:</label>
+                    <div class="input-group" style="width: 250px;">
+                        <input [(ngModel)]="start_date" ng2-datetime-picker date-format="DD-MM-YYYY hh:mm" minute-step='30' date-format="MM/DD/YYYY HH:mm" parse-format="YYYY-MM-DD HH:mm:ss" [ngModelOptions]="{standalone: true}" class="form-control ng-untouched ng-pristine ng-valid" type="text" placeholder="Choose date">
+                        <div class="input-group-addon">
+                            <span class="fa fa-calendar"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label>End Date:</label>
+                    <div class="input-group" style="width: 250px;">
+                        <input [(ngModel)]="end_date" ng2-datetime-picker date-format="DD-MM-YYYY hh:mm" minute-step='30' date-format="MM/DD/YYYY HH:mm" parse-format="YYYY-MM-DD HH:mm:ss" [ngModelOptions]="{standalone: true}" class="form-control ng-untouched ng-pristine ng-valid" type="text" placeholder="Choose date">
+                        <div class="input-group-addon">
+                            <span class="fa fa-calendar"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Description</label>
+                    <textarea [(ngModel)]="description" [ngModelOptions]="{standalone: true}" name="description" class="form-control" rows="10"
+                        placeholder="Enter evento description..." data-gramm="true" data-txt_gramm_id="7e4e8f9f-8c5c-ab12-dad3-c1814513b8ef" data-gramm_id="7e4e8f9f-8c5c-ab12-dad3-c1814513b8ef"
+                        spellcheck="false" data-gramm_editor="true" style="z-index: auto; position: relative; line-height: 20px; font-size: 14px; transition: none; background: transparent !important;"></textarea>
+                </div>
+
+            </div>
+
+        </div>
+
+        <input type="submit" class="btn btn-info" style="margin: 2px 3px; float: right; text-transform: none !important;" value="Save">
+    </form>
+</div>

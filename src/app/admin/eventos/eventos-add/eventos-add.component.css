@@ -1,0 +1,8 @@
+.wrapper {
+    background-color: #ecf0f5;
+    margin: 0 16px;
+}
+
+.ng2-datetime-picker {
+  background-color: blue !important;
+}

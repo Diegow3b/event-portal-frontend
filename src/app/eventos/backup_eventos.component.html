@@ -1,0 +1,25 @@
+<form class="well" (submit)="addEvento($event)">
+    <div class="form-group">
+        <input type="hidden" [(ngModel)]="_id" name="_id">
+        <input type="text" [(ngModel)]="title" name="title" class="form-control" placeholder="Title">
+        <input type="text" [(ngModel)]="location" name="location" class="form-control" placeholder="Location">
+        <input type="text" [(ngModel)]="start_date" name="start_date" class="form-control" placeholder="Start Date">
+        <input type="text" [(ngModel)]="end_date" name="end_date" class="form-control" placeholder="End Date">
+        <textarea rows="7" [(ngModel)]="description" name="description" class="form-control" placeholder="Description"></textarea>
+
+        <input type="submit" class="btn btn-info" style="margin: 2px 3px; float: right;" value="Submit">
+        <input type="button" (click)="updateEvento()" class="btn btn-danger" style="margin: 2px 3px; float: right;" value="Edit">
+    </div>
+</form>
+
+<div class="evento-list">
+    <div *ngFor="let evento of eventos">
+        <div class="col-sm-11">
+            <a id="{{evento._id}}" name="{{evento.slug}}" (click)="DOMloadEditEvento(evento)">{{evento.title}}</a>
+        </div>
+        <div class="col-sm-1">
+            <input type="button" (click)="deleteEvento(evento._id)" value="Delete" class="btn btn-danger">
+        </div>
+        <br><br>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+<section id="home" class="searchBox">
+  <div class="container" style="padding: 0 57px;">
+    <div class="row">
+
+
+      <form (submit)="filterEvents($event)">
+        <div class="col-lg-4">
+          <input [(ngModel)]="categoryFilter" [ngModelOptions]="{standalone: true}" class="form-control" type="text" placeholder="Show, music and party">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+
+        <div class="col-lg-4">
+          <input [(ngModel)]="cityFilter" [ngModelOptions]="{standalone: true}" class="form-control" type="text" placeholder="Search for city" style="border-left: 0;">
+          <i class="fa fa-location-arrow" aria-hidden="true"></i>
+        </div>
+
+        <div class="col-lg-2">
+          <div class="searchDate" style="margin-top: -5px;">
+
+            <input type="hidden" [value]="dateFilter" id="dateFilter" name="dateFilter">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span id="searchForData">
+                  {{ dateFilterLabel }}
+                </span>
+            </button>
+            <ul class="dropdown-menu" id="dropdownMenuDates">
+                <li><a (click)="setDateFilter($event)" value="">All Dates</a></li>
+                <li><a (click)="setDateFilter($event)" value="today">Today</a></li>
+                <li><a (click)="setDateFilter($event)" value="tomorrow">Tomorrow</a></li>
+                <li><a (click)="setDateFilter($event)" value="this-week">This Week</a></li>
+                <li><a (click)="setDateFilter($event)" value="this-weekend">This Weekend</a></li>
+                <li><a (click)="setDateFilter($event)" value="next-week">Next Week</a></li>
+                <li><a (click)="setDateFilter($event)" value="this-month">This Month</a></li>
+            </ul>
+
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <input type="submit" class="btn btn-danger search-input" value="SEARCH">
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+</section>
+
+<section id="eventos" class="eventoBox">
+  <div class="container" style="padding: 0 57px;">
+    <div class="row">
+
+      <div class="header-evento">
+
+        <div class="col-lg-9">
+          <h3 *ngIf="eventosAmount"><strong>{{eventosAmount}}</strong> events found in <strong>{{ locationEventFilter }}</strong></h3>
+          <h3 *ngIf="!eventosAmount"><strong>No</strong> events found in <strong>{{ locationEventFilter }}</strong></h3>
+        </div>
+
+        <div class="col-lg-3">
+
+          <form method="post" class="form-horizontal">
+
+            <div class="form-group">
+              <label class="control-label"><strong>Order By:</strong></label>
+              <div class="selectContainer">
+                <select name="orderBy" class="form-control" (change)="_DateSelectonChange($event.target.value)">
+                  <option value="date" selected>Date</option>
+                  <option value="Relevance">Relevance</option>
+                </select>
+              </div>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div id="events-grid">
+
+        <!--<div *ngFor="let evento of eventos | searchPipe: { category: input_category.value, city: input_city.value }">-->
+        <div *ngFor="let evento of eventos">
+          <div class="col-xs-12 col-sm-6 col-md-4 singleEventBox">
+            <a class="eventBoxLink" [routerLink]="['/events-detail', evento._id]">
+              <div class="eventImageBox" *ngIf="evento.imagem"  [style.background-image]="sanitizeSafeStyle(evento.imagem)"></div>
+              <div class="eventImageBox"0 *ngIf="!evento.imagem" [style.background-image]="sanitizeSafeStyle(defaultImage)"></div>
+
+              <div class="eventName">
+                <p>{{evento.title}}</p>
+              </div>
+              <div class="calendarBox">
+                <div class="calendaMonth" style="text-transform: uppercase;">
+                  {{evento.start_date | date: 'MMM' }} </div>
+                <div class="calendaDay">
+                  {{evento.start_date | date: 'd' }} </div>
+              </div>
+              <div class="eventLocalBox">
+
+                <div class="uppercase line">
+                  <p> {{ evento.location }} </p>
+                </div>
+
+                <div class="line">
+                  <i class="fa fa-clock-o color-grey" style="padding-right: 2px;"></i> {{evento.start_date | date: 'jj' }}
+                  <i class="fa fa-map-marker color-grey" style="padding: 0 2px 0 4px;"></i> {{evento.city}} </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-4 col-md-offset-4">
+          <div class="spinner"></div>
+          <button id="more-events" data-url="/eventos/salvador-ba/show-musica-festa?ordem=data&amp;pagina=2" class="btn btn-dark-transparent btn-outline btn-block load-more" style="margin: 70px auto 30px">Load More</button>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,26 @@
+.wrapper{
+    margin: 0 16px;
+    background-color: #ecf0f5;
+}
+
+.box{
+    margin-top: 61px;
+}
+
+.button-control{
+    float: right;
+}
+
+.button-control a{
+    text-transform: none !important;
+}
+
+a {
+    color: #3c8dbc;
+}
+
+a:hover, a:active, a:focus {
+    outline: none;
+    text-decoration: none;
+    color: #72afd2;
+}

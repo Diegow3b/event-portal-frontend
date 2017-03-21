@@ -1,0 +1,145 @@
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Open Sans', 'Raleway', sans-serif;
+    color: #50525f;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+}
+
+
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.banner {
+    height: 444px;
+    /*width: 100%;*/
+    width: 1170px;
+    min-height: 305px;
+    max-height: 406px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.fa {
+    color: #777 !important;
+}
+
+.event-share a{
+    margin-left: 10px;
+}
+
+.button-facebook{
+    background-color: #4267b2;
+    color: #fff;
+    font-weight: bold;
+    height: 20px;
+    width: 51px;
+}
+
+.event-section {
+    background-color: #f6f6f6;
+    padding-left: 30px;
+}
+
+.icon-left {
+    position: absolute;
+    font-size: 18px;
+    color: rgba(204,204,204,0.8) !important;
+    top: 24px;
+    left: -20px;
+    text-align: center;
+    display: inline-block;
+    width: 28px;
+}
+
+.organizer-image {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.rounded {
+    border-radius: 1000px !important;
+}
+
+.icon-section {
+    position: absolute;
+    font-size: 18px;
+    color: rgba(204,204,204,0.8) !important;
+    top: 29px;
+    text-align: center;
+    width: 28px;
+    left: -20px;
+    display: inline-block;
+}
+
+.border-right {
+    border-right: 1px solid #dfdfdf;
+}
+.border-left {
+    border-left: 1px solid #dfdfdf;
+}
+.border-top {
+    border-top: 1px solid #dfdfdf;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.producer-section {
+    padding-left: 30px;
+}
+
+#descricao span{
+    white-space: pre-line;
+}
+
+
+@media screen and (max-width: 1025px) {
+    .banner { width: 100% };
+}
+
+@media screen and (max-width: 769px) {
+    .banner { width: 95% };
+}
+
+@media screen and (max-width: 426px) {
+    .banner {
+        /*height: 117px;*/
+        width: 100%;
+        min-height: 110px;
+        max-height: 117px;
+        background-size: 100%;
+    };
+}
+
+@media screen and (max-width: 376px) {
+    .banner {
+        /*height: 117px;*/
+        width: 100%;
+        min-height: 100px;
+        max-height: 105px;
+        background-size: 100%;
+    };
+}
+
+@media screen and (max-width: 321px) {
+    .banner {
+        /*height: 117px;*/
+        width: 100%;
+        min-height: 80px;
+        max-height: 90px;
+        background-size: 100%;
+    };
+}

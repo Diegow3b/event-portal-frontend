@@ -1,0 +1,90 @@
+<div class="container-fluid" style="margin-top: 23px; background-color: ececec;">
+    <div class="container">
+        <!--<div class="banner" style="background-image: url(https://d1gkntzr8mxq7s.cloudfront.net/58cac98c88b2e-lg.png);"></div>-->
+        <div class="banner" *ngIf="evento?.imagem" [style.background-image]="sanitizeSafeStyle(evento.imagem)"></div>
+        <div class="banner" *ngIf="!evento?.imagem" [style.background-image]="sanitizeSafeStyle(defaultImage)"></div>
+
+        <div class="container border-left border-right" style="padding-bottom: 30px;" id="info">
+            <div class="">
+                <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+                    <h1 class="uppercase">{{ evento?.title }}</h1>
+                    <!--<div><i class="fa fa-map-marker"></i> Salvador - Salvador, BA</div>-->
+                    <div><i class="fa fa-map-marker"></i> {{ evento?.location }} - {{ evento?.city }}</div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="">
+                                <div>
+                                    <!--<i class="fa fa-calendar"></i> 25 de março de 2017, 12h - 30 de abril de 2017, 23h55-->
+                                    <i *ngIf="evento?.start_date" class="fa fa-calendar"></i> {{evento?.start_date | date:'MMMM d, y, H' }}h - {{evento?.end_date | date:'MMMM d, y, H' }}h
+                                </div>
+                                <hr>
+                                <div class="event-share">
+                                    <span>Share:</span>
+                                    <a href="#"><i class="fa fa-envelope-o"></i></a>
+                                    <a target="_blank" href="#" title=""><i class="fa fa-facebook"></i></a>
+                                    <a target="_blank" href="#" title=""><i class="fa fa-twitter"></i></a>
+                                    <a target="_blank" href="#" title=""><i class="fa fa-google-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="container border-top border-left border-right event-section" style="padding-bottom: 43px;" id="descricao">
+            <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12" id="event-txt">
+                <i class="fa fa-align-left icon-left" aria-hidden="true"></i>
+                <h3 class="title-description">Event Description</h3>
+                <div>
+                    <font face="Arial, Verdana">
+                        <span style="font-size: 13.3333px;">
+                            {{ evento?.description }}
+                        </span>
+                    </font>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="container border-top border-left border-right border-bottom producer-section" style="margin-bottom: 50px; padding-bottom: 50px;" id="produtor">
+            <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+                <i class="fa fa-user-o icon-section"></i>
+                <h3 id="about">About the producer</h3>
+            </div>
+
+
+            <div style="width: 105px; margin-left: 15px; clear: both; margin-top: 7px;" class="pull-left hidden-xs hidden-sm">
+                <div class="organizer-image rounded" *ngIf="evento?.imagem" [style.background-image]="sanitizeSafeStyle(evento.imagem)"></div>
+                <div class="organizer-image rounded" *ngIf="!evento?.imagem" [style.background-image]="sanitizeSafeStyle(defaultImage)"></div>
+            </div>
+            <div class="row row-centered visible-xs visible-sm">
+                <div class="col-centered pull-none-xs pull-left-md">
+                    <div class="organizer-image rounded" *ngIf="evento?.imagem" [style.background-image]="sanitizeSafeStyle(evento.imagem)"></div>
+                    <div class="organizer-image rounded" *ngIf="!evento?.imagem" [style.background-image]="sanitizeSafeStyle(defaultImage)"></div>
+                </div>
+            </div>
+            <div class="col-md-7 col-xs-12">
+                <h4 class="kill-top-margin text-center-xs text-left-md">{{ evento?.producer }}</h4>
+                <div class="padding-top-20" style="margin-top: 29px;">
+                    <a href="#" onclick="contactOrg();" data-color="#00aeef" class="btn btn-dark-transparent btn-outline contact-org-btn ripple"
+                        style="position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span style="position: relative; z-index: 2;"><i class="fa fa-envelope-o"></i> Fale com o produtor</span><span class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 4px; opacity: 1; transition: none;"><span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; background-color: rgb(0, 174, 239); transform: scale3d(0, 0, 1); transition: none;"></span></span></a>
+                    <a href="#" target="_blank" class="btn btn-dark-transparent btn-outline btn-whitespace-normal contact-org-btn ripple"
+                        data-color="#00aeef" style="position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><span style="position: relative; z-index: 2;"><i class="fa fa-calendar"></i> Mais eventos deste produtor</span>
+                        <span
+                            class="rippleWrap" style="position: absolute; z-index: 1; left: 0px; top: 0px; overflow: hidden; border-radius: 4px; opacity: 1; transition: none;"><span class="rippleAnimate" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; border-radius: 50%; background-color: rgb(0, 174, 239); transform: scale3d(0, 0, 1); transition: none;"></span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

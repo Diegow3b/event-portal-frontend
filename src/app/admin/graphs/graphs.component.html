@@ -1,0 +1,13 @@
+<div class="col-lg-3 col-xs-6" *ngFor="let cube of cubes">
+    <div class="small-box bg-{{ cube?.color }}">
+        <div class="inner">
+            <h3>{{ cube?.amount }}</h3>
+
+            <p>{{ cube?.title }}</p>
+        </div>
+        <div class="icon">
+            <i class="ion {{ cube?.ionIcon }}"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+</div>
