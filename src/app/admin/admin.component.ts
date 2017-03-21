@@ -15,8 +15,8 @@ export class AdminComponent implements OnInit {
     }
 
     loadAdminCss() {
-        this.loadCSS('../src/static/admin/css/AdminLTE.min.css');
-        this.loadCSS('../src/static/admin/css/skins/_all-skins.min.css');
+        // this.loadCSS('../src/static/admin/css/AdminLTE.min.css');
+        // this.loadCSS('../src/static/admin/css/skins/_all-skins.min.css');
     }
 
     loadCSS(url) {
