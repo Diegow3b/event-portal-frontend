@@ -1,0 +1,32 @@
+<ul class="timeline">
+    <div class="timeline" *ngFor="let timeline of timelines">
+        <!--<li class="time-label">
+            <span class="bg-red">
+                {{ timeline?.date | date:"mediumDate" }}
+            </span>
+        </li>-->
+
+
+        <li>
+
+            <i [class]="getStyle(timeline?.action)"></i>
+
+            <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{ timeline?.date | date:"fullDate" }} </span>
+
+                <h3 class="timeline-header" style="text-transform: capitalize;"> {{ timeline?.action }} {{ timeline?.model }}: {{ timeline?.name }}</h3>
+
+                <div class="timeline-body">
+                    {{ timeline?.body }}
+                </div>
+            </div>
+        </li>
+
+
+    </div>
+
+    <li>
+        <i class="fa fa-ban bg-gray"></i>
+    </li>
+
+</ul>
