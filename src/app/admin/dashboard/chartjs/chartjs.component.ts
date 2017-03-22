@@ -14,8 +14,6 @@ export class ChartjsComponent implements OnInit {
 
     eventos: any;
 
-
-
     constructor(private eventosService: EventosService) {
         this.eventos = {};
         // this.eventos.music = new Array();

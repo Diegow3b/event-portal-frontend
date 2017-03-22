@@ -20,11 +20,4 @@ export class TimelineService {
             .map(res => res.json());
     }
 
-    addTimeline(newTimeline) {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.post(this.host+'/api/timeline', JSON.stringify(newTimeline), { headers: headers })
-            .map(res => res.json());
-    }
-
 }
