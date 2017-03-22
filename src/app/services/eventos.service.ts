@@ -11,8 +11,8 @@ export class EventosService {
     constructor(private http: Http) {
         console.log('Evento Service Initialized...');
         // this.host =  process.env.NODE_ENV == 'production' ? 'https://evento-portal-backend.herokuapp.com':'http://localhost:3000';
-        this.host = 'https://evento-portal-backend.herokuapp.com'
-        // this.host = 'http://localhost:3000'
+        // this.host = 'https://evento-portal-backend.herokuapp.com'
+        this.host = 'http://localhost:3000'
     }
 
     getEventos() {
@@ -23,7 +23,6 @@ export class EventosService {
     filterEvento(filterObj) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        console.log(filterObj);
         return this.http.post(this.host+'/api/eventos/filter', JSON.stringify(filterObj), { headers: headers })
             .map(res => res.json());
     }
