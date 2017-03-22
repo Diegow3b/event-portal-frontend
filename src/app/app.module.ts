@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { EventosService } from './services/eventos.service';
+import { TimelineService } from './services/timeline.service';
 
 import { routes } from './app.router';
 
@@ -21,6 +22,9 @@ import { GraphsComponent } from './admin/graphs/graphs.component';
 import { EventosAddComponent } from './admin/eventos/eventos-add/eventos-add.component';
 import { EventosListComponent } from './admin/eventos/eventos-list/eventos-list.component';
 import { EventosEditComponent } from './admin/eventos/eventos-edit/eventos-edit.component';
+import { RecentEventosComponent } from './admin/dashboard/recent-eventos/recent-eventos.component';
+import { TimelineComponent } from './admin/dashboard/timeline/timeline.component';
+import { ChartjsComponent } from './admin/dashboard/chartjs/chartjs.component';
 
 
 
@@ -36,7 +40,10 @@ import { EventosEditComponent } from './admin/eventos/eventos-edit/eventos-edit.
     EventosAddComponent,
     EventosListComponent,
     EventosEditComponent,
-    AboutComponent
+    AboutComponent,
+    RecentEventosComponent,
+    TimelineComponent,
+    ChartjsComponent
     // SearchPipe
   ],
   imports: [
@@ -46,7 +53,7 @@ import { EventosEditComponent } from './admin/eventos/eventos-edit/eventos-edit.
     routes,
     Ng2DatetimePickerModule
   ],
-  providers:[EventosService],
+  providers:[EventosService, TimelineService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

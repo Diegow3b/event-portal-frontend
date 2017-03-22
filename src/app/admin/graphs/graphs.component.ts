@@ -29,7 +29,6 @@ export class GraphsComponent implements OnInit {
     countCategory(category: string) {
         let count: number = 0;
         for (let i = 0; i <= this.eventos.length; i++) {
-            // console.log(this.eventos[i]);
             if (this.eventos[i] && this.eventos[i].category == category) count++;
         }
         return count;

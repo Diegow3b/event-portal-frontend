@@ -37,7 +37,6 @@ export class EventosDetailComponent implements OnInit, OnDestroy {
             .subscribe(evento => {
                 if (!evento.imagem) delete evento.imagem;
                 if (evento.length == 1) this.evento = evento[0];
-                console.log(evento);
             });
 
     }

@@ -160,7 +160,6 @@ export class EventosComponent implements OnInit {
 
         this._sanityCheck(filter);
 
-        console.log(filter);
         this.eventosService.filterEvento(filter)
             .subscribe(eventos => {
                 this.eventos = eventos.sort(this._sortByDate([ 'start_date' ]));
