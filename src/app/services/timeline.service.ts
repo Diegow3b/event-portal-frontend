@@ -11,7 +11,7 @@ export class TimelineService {
     constructor(private http: Http) {
         console.log('Timeline Service Initialized...');
         // this.host =  process.env.NODE_ENV == 'production' ? 'https://Timeline-portal-backend.herokuapp.com':'http://localhost:3000';
-        this.host = 'https://Timeline-portal-backend.herokuapp.com'
+        this.host = 'https://evento-portal-backend.herokuapp.com'
         // this.host = 'http://localhost:3000'
     }
 
