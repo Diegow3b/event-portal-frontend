@@ -18,6 +18,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "1.0.0-rc.1",
     "@angular/common": "^2.4.0",
     "@angular/compiler": "^2.4.0",
     "@angular/core": "^2.4.0",
@@ -26,7 +27,7 @@
     "@angular/platform-browser": "^2.4.0",
     "@angular/platform-browser-dynamic": "^2.4.0",
     "@angular/router": "^3.4.0",
-    "@angular/cli": "1.0.0-rc.1",
+    "chart.js": "^2.5.0",
     "core-js": "^2.4.1",
     "express": "^4.15.2",
     "ng2-datetime-picker": "^0.14.8",
