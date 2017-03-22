@@ -1,5 +1,5 @@
 import { ViewChild, Component, ElementRef, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+// import Chart from 'chart.js';
 import { EventosService } from '../../../services/eventos.service';
 import { Evento } from '../../../../../class/evento';
 
@@ -28,7 +28,7 @@ export class ChartjsComponent implements OnInit {
     ngOnInit() {
 
         // this.initializeLineChart();
-        this._renderLineChard();
+        // this._renderLineChard();
     }
 
     // initializeLineChart() {
@@ -89,92 +89,92 @@ export class ChartjsComponent implements OnInit {
         }
     }
 
-    _renderLineChard(labels = []) {
-        // console.log(labels);
-        labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        let lineCtx = this.line.nativeElement.getContext('2d');
+    // _renderLineChard(labels = []) {
+    //     // console.log(labels);
+    //     labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    //     let lineCtx = this.line.nativeElement.getContext('2d');
 
-        let data = {
-            labels: labels,
-            datasets: [
-                {
-                    label: "Eventos - Show",
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "#39cccc",
-                    borderColor: "#39cccc",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "rgba(75,192,192,1)",
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [1,4,3,6,6,6,6,8,10,11,12,14],
-                    spanGaps: false,
-                },
+    //     let data = {
+    //         labels: labels,
+    //         datasets: [
+    //             {
+    //                 label: "Eventos - Show",
+    //                 fill: false,
+    //                 lineTension: 0.1,
+    //                 backgroundColor: "#39cccc",
+    //                 borderColor: "#39cccc",
+    //                 borderCapStyle: 'butt',
+    //                 borderDash: [],
+    //                 borderDashOffset: 0.0,
+    //                 borderJoinStyle: 'miter',
+    //                 pointBorderColor: "rgba(75,192,192,1)",
+    //                 pointBackgroundColor: "#fff",
+    //                 pointBorderWidth: 1,
+    //                 pointHoverRadius: 5,
+    //                 pointHoverBackgroundColor: "rgba(75,192,192,1)",
+    //                 pointHoverBorderColor: "rgba(220,220,220,1)",
+    //                 pointHoverBorderWidth: 2,
+    //                 pointRadius: 1,
+    //                 pointHitRadius: 10,
+    //                 data: [1,4,3,6,6,6,6,8,10,11,12,14],
+    //                 spanGaps: false,
+    //             },
 
-                {
-                    label: "Eventos - Music",
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "#00a65a",
-                    borderColor: "#00a65a",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "rgba(75,192,192,1)",
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [1,2,3,2,3,4,5,9,10,14,15,14],
-                    spanGaps: false,
-                },
+    //             {
+    //                 label: "Eventos - Music",
+    //                 fill: false,
+    //                 lineTension: 0.1,
+    //                 backgroundColor: "#00a65a",
+    //                 borderColor: "#00a65a",
+    //                 borderCapStyle: 'butt',
+    //                 borderDash: [],
+    //                 borderDashOffset: 0.0,
+    //                 borderJoinStyle: 'miter',
+    //                 pointBorderColor: "rgba(75,192,192,1)",
+    //                 pointBackgroundColor: "#fff",
+    //                 pointBorderWidth: 1,
+    //                 pointHoverRadius: 5,
+    //                 pointHoverBackgroundColor: "rgba(75,192,192,1)",
+    //                 pointHoverBorderColor: "rgba(220,220,220,1)",
+    //                 pointHoverBorderWidth: 2,
+    //                 pointRadius: 1,
+    //                 pointHitRadius: 10,
+    //                 data: [1,2,3,2,3,4,5,9,10,14,15,14],
+    //                 spanGaps: false,
+    //             },
 
-                {
-                    label: "Eventos - Party",
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "#dd4b39",
-                    borderColor: "#dd4b39",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "rgba(75,192,192,1)",
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: [5,4,5,6,7,8,9,14,15,15,14,12],
-                    spanGaps: false,
-                }
-            ]
-        };
+    //             {
+    //                 label: "Eventos - Party",
+    //                 fill: false,
+    //                 lineTension: 0.1,
+    //                 backgroundColor: "#dd4b39",
+    //                 borderColor: "#dd4b39",
+    //                 borderCapStyle: 'butt',
+    //                 borderDash: [],
+    //                 borderDashOffset: 0.0,
+    //                 borderJoinStyle: 'miter',
+    //                 pointBorderColor: "rgba(75,192,192,1)",
+    //                 pointBackgroundColor: "#fff",
+    //                 pointBorderWidth: 1,
+    //                 pointHoverRadius: 5,
+    //                 pointHoverBackgroundColor: "rgba(75,192,192,1)",
+    //                 pointHoverBorderColor: "rgba(220,220,220,1)",
+    //                 pointHoverBorderWidth: 2,
+    //                 pointRadius: 1,
+    //                 pointHitRadius: 10,
+    //                 data: [5,4,5,6,7,8,9,14,15,15,14,12],
+    //                 spanGaps: false,
+    //             }
+    //         ]
+    //     };
 
-        var chart = new Chart(
-            lineCtx,
-            {
-                "type": 'line',
-                "data": data
-            }
-        );
-    }
+    //     var chart = new Chart(
+    //         lineCtx,
+    //         {
+    //             "type": 'line',
+    //             "data": data
+    //         }
+    //     );
+    // }
 
 }
