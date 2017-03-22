@@ -17,22 +17,32 @@ export class GraphsComponent implements OnInit {
 
     constructor(private eventosService: EventosService) {
         this.cubes = new Array();
+        this.eventos = new Array();
     }
 
     ngOnInit() {
         this.getAllEventosAdmin();
 
-        this.cubes.push(new cubeGraph("Users", 0, 'yellow', 'ion-person-stalker'));
-        this.cubes.push(new cubeGraph("Eventos - Show", 0, 'teal', 'ion-ios-star-outline'));
-        this.cubes.push(new cubeGraph("Eventos - Music", 0, 'green', 'ion-ios-musical-notes'));
-        this.cubes.push(new cubeGraph("Eventos - Party", 0, 'red', 'ion-ios-people'));
+
     }
 
+    countCategory(category: string) {
+        let count: number = 0;
+        for (let i = 0; i <= this.eventos.length; i++) {
+            // console.log(this.eventos[i]);
+            if (this.eventos[i] && this.eventos[i].category == category) count++;
+        }
+        return count;
+
+    }
     getAllEventosAdmin() {
         this.eventosService.getEventos()
             .subscribe(eventos => {
                 this.eventos = eventos;
                 this.cubes.push(new cubeGraph("Total Eventos", this.eventos.length, 'aqua', 'ion-calendar'));
+                this.cubes.push(new cubeGraph("Eventos - Show", this.countCategory('show'), 'teal', 'ion-ios-star-outline'));
+                this.cubes.push(new cubeGraph("Eventos - Music", this.countCategory('music'), 'green', 'ion-ios-musical-notes'));
+                this.cubes.push(new cubeGraph("Eventos - Party", this.countCategory('party'), 'red', 'ion-ios-people'));
             });
     }
 
