@@ -9,6 +9,8 @@ import { TimelineService } from './services/timeline.service';
 import { routes } from './app.router';
 
 import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { MomentModule } from 'angular2-moment/moment.module';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -51,7 +53,8 @@ import { ChartjsComponent } from './admin/dashboard/chartjs/chartjs.component';
     FormsModule,
     HttpModule,
     routes,
-    Ng2DatetimePickerModule
+    Ng2DatetimePickerModule,
+    ChartsModule
   ],
   providers:[EventosService, TimelineService],
   bootstrap: [AppComponent]
