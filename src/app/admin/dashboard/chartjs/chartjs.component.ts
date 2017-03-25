@@ -13,14 +13,24 @@ import * as _ from 'underscore';
 })
 export class ChartjsComponent implements OnInit {
 
-    // @ViewChild('line') line: ElementRef;
-
     eventos: any;
 
     lineChartLabels: any;
     lineChartLabelsNumber: any;
 
+    listAmountMusic: any;
+    listAmountShow: any;
+    listAmountParty: any;
+
+    categoryList
+
     listEventos: any;
+
+    lineChartData: any;
+
+    isDataAvailable: boolean = false;
+
+    monthNames: any;
 
     constructor(private eventosService: EventosService) {
         this.eventos = {};
@@ -28,120 +38,93 @@ export class ChartjsComponent implements OnInit {
         this.lineChartLabelsNumber = new Array();
         this.listEventos = new Array();
 
+        this.listAmountMusic = new Array();
+        this.listAmountShow = new Array();
+        this.listAmountParty = new Array();
+
+        this.lineChartData = new Array();
+
+        this.categoryList = ['show', 'music', 'party'];
+
+        this.monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        this.initializeLineChart();
+
     }
 
     ngOnInit() {
-        this.initializeLineChart();
+
     }
 
-    // getEventoByLabel() {
-    //     this.eventosService.filterEvento({ category: "music" })
-    //         .subscribe(eventos => {
-    //             var groups: any;
-    //             this.eventos.music = eventos.sort(this._sortByDate(['start_date']));
+    defineLabels(eventos) {
+        eventos.forEach(evento => {
+            let date = new Date(evento.start_date);
+            if (!this.lineChartLabels.includes(this.monthNames[date.getMonth()])) {
+                this.lineChartLabels.push(this.monthNames[date.getMonth()]);
+                this.lineChartLabelsNumber.push(date.getMonth());
+            }
 
-    //             eventos.forEach(element => {
-    //                 _.groupBy(eventos, function (evento) {
-    //                     let monthNumber = new Date(evento.start_date).getMonth();
-    //                     console.log('-------------------------');
-    //                     console.log(this.lineChartLabelsNumber);
-    //                     console.log('-------------------------');
-    //                     // if (this.lineChartLabelsNumber) {
-    //                     //     this.lineChartLabelsNumber.forEach(month => {
-    //                     //         // if(monthNumber == month) this.listEventos.push(evento);
-    //                     //     });
-    //                     // }
+        });
+    }
 
-    //                 });
-    //             });
-    //             // setTimeout(function() {
-    //             //     console.log(this.listEventos);
-    //             // }, 1300);
+    _capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
+    defineDataset(eventos, list) {
+        this.lineChartLabelsNumber.forEach(monthNumber => {
+            var group = _.filter(eventos, (evento) => { return new Date(evento.start_date).getMonth() == monthNumber });
+            list.push(group.length);
+        });
+    }
 
+    unlockGraph(unlock: boolean = false) {
+        this.isDataAvailable = unlock;
+    }
 
-    //         });
+    addDataset(label, eventos, selectList) {
+        let list = selectList();
+        this.defineDataset(eventos, list);
 
-    // }
+        this.lineChartData.push({
+            data: list,
+            fill: false,
+            label: "Eventos - " + this._capitalizeFirstLetter(label)
+        });
+
+    }
 
     initializeLineChart() {
-        let monthNames: any = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"];
 
         this.eventosService.filterEvento({})
             .subscribe(eventos => {
-                // eventos.forEach(element => {
-                for (let i = 0; i < eventos.length; i++) {
-                    let date = new Date(eventos[i].start_date);
-                    if (!this.lineChartLabels.includes(monthNames[date.getMonth()])) {
-                        this.lineChartLabels.push(monthNames[date.getMonth()]);
-                        this.lineChartLabelsNumber.push(date.getMonth());
-
-                        /**------------------------------------------------ */
-                        _.groupBy(eventos, function (evento) {
-                            let monthNumber = new Date(evento.start_date).getMonth();
-                            console.log('-------------------------');
-                            // console.log(this.lineChartLabelsNumber);
-                            console.log('-------------------------');
-                            // if (this.lineChartLabelsNumber) {
-                            //     this.lineChartLabelsNumber.forEach(month => {
-                            //         // if(monthNumber == month) this.listEventos.push(evento);
-                            //     });
-                            // }
-
-                        });
-                    }
-                }
-
-                // });
-
+                this.defineLabels(eventos);
             });
 
-        // console.log(this.lineChartLabels);
-        // console.log(this.lineChartLabelsNumber);
+        this.categoryList.forEach((category, idx) => {
+            this.eventosService.filterEvento({ category: category.toLowerCase() })
+                .subscribe(eventos => {
+                    this.addDataset(category, eventos, () => {
+                        switch (category) {
+                            case "music":
+                                return this.listAmountMusic;
+                            case "show":
+                                return this.listAmountShow;
+                            case "party":
+                                return this.listAmountParty;
+                        }
+                    });
 
-        // this.eventosService.filterEvento({ category: "music" })
-        //     .subscribe(eventos => {
-        //         var groups: any;
-        //         this.eventos.music = eventos.sort(this._sortByDate(['start_date']));
-
-        //         eventos.forEach(element => {
-        //             _.groupBy(eventos, function (evento) {
-        //                 let monthNumber = new Date(evento.start_date).getMonth();
-        //                 console.log('-------------------------');
-        //                 console.log(this.lineChartLabelsNumber);
-        //                 console.log('-------------------------');
-        //                 // if (this.lineChartLabelsNumber) {
-        //                 //     this.lineChartLabelsNumber.forEach(month => {
-        //                 //         // if(monthNumber == month) this.listEventos.push(evento);
-        //                 //     });
-        //                 // }
-
-        //             });
-        //         });
-        //         // setTimeout(function() {
-        //         //     console.log(this.listEventos);
-        //         // }, 1300);
-
-
-
-        //     });
-
-        // this.eventosService.filterEvento({ category: "show" })
-        //     .subscribe(eventos => {
-        //         this.eventos.show = eventos.sort(this._sortByDate(['start_date']));
-        //     });
-
-        // this.eventosService.filterEvento({ category: "party" })
-        //     .subscribe(eventos => {
-        //         this.eventos.party = eventos.sort(this._sortByDate(['start_date']));
-        //     });
-
-        // let eventosMusicAmount;
-        // this.eventos.music.forEach(element => {
-        //     eventosMusicAmount.push({ month: element.start_date.getMonth(), amount: })
-        // });
+                });
+            if (idx == this.categoryList.length - 1){
+                setTimeout(() => {
+                    this.unlockGraph(true);
+                }, 4000);
+            }
+        });
 
     }
 
@@ -166,124 +149,30 @@ export class ChartjsComponent implements OnInit {
         }
     }
 
-    // _renderLineChard(labels = []) {
-    //     // console.log(labels);
-    //     labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    //     let lineCtx = this.line.nativeElement.getContext('2d');
 
-    //     let data = {
-    //         labels: labels,
-    //         datasets: [
-    //             {
-    //                 label: "Eventos - Show",
-    //                 fill: false,
-    //                 lineTension: 0.1,
-    //                 backgroundColor: "#39cccc",
-    //                 borderColor: "#39cccc",
-    //                 borderCapStyle: 'butt',
-    //                 borderDash: [],
-    //                 borderDashOffset: 0.0,
-    //                 borderJoinStyle: 'miter',
-    //                 pointBorderColor: "rgba(75,192,192,1)",
-    //                 pointBackgroundColor: "#fff",
-    //                 pointBorderWidth: 1,
-    //                 pointHoverRadius: 5,
-    //                 pointHoverBackgroundColor: "rgba(75,192,192,1)",
-    //                 pointHoverBorderColor: "rgba(220,220,220,1)",
-    //                 pointHoverBorderWidth: 2,
-    //                 pointRadius: 1,
-    //                 pointHitRadius: 10,
-    //                 data: [1,4,3,6,6,6,6,8,10,11,12,14],
-    //                 spanGaps: false,
-    //             },
-
-    //             {
-    //                 label: "Eventos - Music",
-    //                 fill: false,
-    //                 lineTension: 0.1,
-    //                 backgroundColor: "#00a65a",
-    //                 borderColor: "#00a65a",
-    //                 borderCapStyle: 'butt',
-    //                 borderDash: [],
-    //                 borderDashOffset: 0.0,
-    //                 borderJoinStyle: 'miter',
-    //                 pointBorderColor: "rgba(75,192,192,1)",
-    //                 pointBackgroundColor: "#fff",
-    //                 pointBorderWidth: 1,
-    //                 pointHoverRadius: 5,
-    //                 pointHoverBackgroundColor: "rgba(75,192,192,1)",
-    //                 pointHoverBorderColor: "rgba(220,220,220,1)",
-    //                 pointHoverBorderWidth: 2,
-    //                 pointRadius: 1,
-    //                 pointHitRadius: 10,
-    //                 data: [1,2,3,2,3,4,5,9,10,14,15,14],
-    //                 spanGaps: false,
-    //             },
-
-    //             {
-    //                 label: "Eventos - Party",
-    //                 fill: false,
-    //                 lineTension: 0.1,
-    //                 backgroundColor: "#dd4b39",
-    //                 borderColor: "#dd4b39",
-    //                 borderCapStyle: 'butt',
-    //                 borderDash: [],
-    //                 borderDashOffset: 0.0,
-    //                 borderJoinStyle: 'miter',
-    //                 pointBorderColor: "rgba(75,192,192,1)",
-    //                 pointBackgroundColor: "#fff",
-    //                 pointBorderWidth: 1,
-    //                 pointHoverRadius: 5,
-    //                 pointHoverBackgroundColor: "rgba(75,192,192,1)",
-    //                 pointHoverBorderColor: "rgba(220,220,220,1)",
-    //                 pointHoverBorderWidth: 2,
-    //                 pointRadius: 1,
-    //                 pointHitRadius: 10,
-    //                 data: [5,4,5,6,7,8,9,14,15,15,14,12],
-    //                 spanGaps: false,
-    //             }
-    //         ]
-    //     };
-
-    //     var chart = new Chart(
-    //         lineCtx,
-    //         {
-    //             "type": 'line',
-    //             "data": data
-    //         }
-    //     );
-    // }
-
-    // lineChart
-    public lineChartData: Array<any> = [
-        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Eventos - Show' },
-        { data: [28, 48, 40, 19, 86, 27, 90], label: 'Eventos - Music' },
-        { data: [18, 48, 77, 9, 100, 27, 40], label: 'Eventos - Party' }
-    ];
-    // public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
     public lineChartOptions: any = {
         responsive: true
     };
     public lineChartColors: Array<any> = [
         { // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
-            borderColor: 'rgba(148,159,177,1)',
+            backgroundColor: 'rgba(57,204,204,0.5)',
+            borderColor: '#39cccc',
             pointBackgroundColor: 'rgba(148,159,177,1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(148,159,177,0.8)'
         },
         { // dark grey
-            backgroundColor: 'rgba(77,83,96,0.2)',
-            borderColor: 'rgba(77,83,96,1)',
+            backgroundColor: 'rgba(0,166,90,0.5)',
+            borderColor: '#00a65a',
             pointBackgroundColor: 'rgba(77,83,96,1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(77,83,96,1)'
         },
         { // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
-            borderColor: 'rgba(148,159,177,1)',
+            backgroundColor: 'rgba(221,75,57,0.5)',
+            borderColor: '#dd4b39',
             pointBackgroundColor: 'rgba(148,159,177,1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',

@@ -1,43 +1,18 @@
-<!--<div class="box box-info">
-    <div class="box-header with-border">
-        <h3 class="box-title">Line Chart</h3>
-
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
-    </div>
-    <div class="box-body">
-        <div class="chart">
-            <canvas #line id="lineChart" style="height: 250px; width: 761px;" height="250" width="761"></canvas>
-        </div>
-    </div>
-</div>-->
-
 <div class="row">
-  <div class="col-md-12">
-    <div style="display: block;">
-    <canvas baseChart
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+    <div class="col-md-12">
+        <div style="display: block;">
+            <div *ngIf="isDataAvailable">
+                <canvas baseChart
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)">
+                </canvas>
+            </div>
+        </div>
     </div>
-  </div>
-  <!--<div class="col-md-6" style="margin-bottom: 10px">
-    <table class="table table-responsive table-condensed">
-      <tr>
-        <th *ngFor="let label of lineChartLabels">{{label}}</th>
-      </tr>
-      <tr *ngFor="let d of lineChartData">
-        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-      </tr>
-    </table>
-    <button (click)="randomize()">CLICK</button>
-  </div>-->
 </div>
