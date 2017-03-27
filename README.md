@@ -1,5 +1,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
+[![Build Status](https://travis-ci.org/Diegow3b/event-portal-frontend.svg?branch=master)](https://travis-ci.org/Diegow3b/event-portal-frontend)
+
 # Client
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.1.
