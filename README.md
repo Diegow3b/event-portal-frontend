@@ -1,6 +1,5 @@
-[![license](https://img.shields.io/github/Diegow3b/event-portal-frontend.svg)]()
+[![license](https://img.shields.io/github/license/Diegow3b/event-portal-frontend.svg)]()
 [![Build Status](https://travis-ci.org/Diegow3b/event-portal-frontend.svg?branch=master)](https://travis-ci.org/Diegow3b/event-portal-frontend)
-[![Packagist](https://img.shields.io/packagist/v/Diegow3b/event-portal-frontend.svg)]()
 
 # Client
 
