@@ -1,0 +1,21 @@
+<div class="container" style="margin-bottom:200px; margin-top: 72px;">
+    
+    <div *ngIf="hasError" class="alert alert-danger" role="alert" style="margin: 50px auto; width: 400px;">
+        <a href="#" class="alert-link">Error</a> {{ errorBody }}
+    </div>
+
+
+    <div class="login-card">
+        <h1>Log-in</h1><br>
+        <form (submit)="login($event)">
+            <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="text" name="email" placeholder="E-mail">
+            <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" name="pass" placeholder="Password">
+            <input type="submit" name="login" class="login login-submit" value="login">
+        </form>
+
+        <div class="login-help">
+            <!--<a href="#">Register</a> • -->
+            <a href="#">Forgot Password</a>
+        </div>
+    </div>
+</div>

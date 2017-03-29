@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { EventosService } from './services/eventos.service';
 import { TimelineService } from './services/timeline.service';
+import { UserService } from './services/user.service';
 
 import { routes } from './app.router';
 
@@ -15,7 +16,7 @@ import { MomentModule } from 'angular2-moment/moment.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { EventosComponent } from './eventos/eventos.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { EventosDetailComponent } from './eventos-detail/eventos-detail.component';
 
 import { AdminComponent } from './admin/admin.component';
@@ -56,7 +57,7 @@ import { ChartjsComponent } from './admin/dashboard/chartjs/chartjs.component';
     Ng2DatetimePickerModule,
     ChartsModule
   ],
-  providers:[EventosService, TimelineService],
+  providers:[EventosService, TimelineService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

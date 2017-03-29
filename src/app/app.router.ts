@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { EventosComponent } from './eventos/eventos.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { EventosDetailComponent } from './eventos-detail/eventos-detail.component';
 
 import { AdminComponent } from './admin/admin.component';
