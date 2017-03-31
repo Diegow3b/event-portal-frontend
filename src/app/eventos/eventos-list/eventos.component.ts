@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit, Pipe, PipeTransform } from '@angular/core';
-import { EventosService } from '../services/eventos.service';
-import { Evento } from '../../../class/evento';
+import { EventosService } from '../../services/eventos.service';
+import { Evento } from '../../../../class/evento';
 
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';

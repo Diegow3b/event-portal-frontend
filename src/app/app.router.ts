@@ -3,13 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
-import { EventosComponent } from './eventos/eventos.component';
+import { EventosComponent } from './eventos/eventos-list/eventos.component';
 import { LoginComponent } from './auth/login/login.component';
-import { EventosDetailComponent } from './eventos-detail/eventos-detail.component';
+import { EventosDetailComponent } from './eventos/eventos-detail/eventos-detail.component';
 
 import { AdminComponent } from './admin/admin.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { GraphsComponent } from './admin/graphs/graphs.component';
+import { GraphsComponent } from './admin/dashboard/graphs/graphs.component';
 import { EventosListComponent } from './admin/eventos/eventos-list/eventos-list.component';
 import { EventosAddComponent } from './admin/eventos/eventos-add/eventos-add.component';
 import { EventosEditComponent } from './admin/eventos/eventos-edit/eventos-edit.component';

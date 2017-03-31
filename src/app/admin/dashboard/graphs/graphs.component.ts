@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { cubeGraph } from '../../../../class/cube';
-import { EventosService } from '../../services/eventos.service';
-import { Evento } from '../../../../class/evento';
+import { cubeGraph } from '../../../../../class/cube';
+import { EventosService } from '../../../services/eventos.service';
+import { Evento } from '../../../../../class/evento';
 
 @Component({
     selector: 'app-graphs',
