@@ -13,6 +13,9 @@ import { GraphsComponent } from './admin/dashboard/graphs/graphs.component';
 import { EventosListComponent } from './admin/eventos/eventos-list/eventos-list.component';
 import { EventosAddComponent } from './admin/eventos/eventos-add/eventos-add.component';
 import { EventosEditComponent } from './admin/eventos/eventos-edit/eventos-edit.component';
+import { UsersListComponent } from './admin/users/users-list/users-list.component';
+import { UsersAddComponent } from './admin/users/users-add/users-add.component';
+import { UsersEditComponent } from './admin/users/users-edit/users-edit.component';
 
 export const router: Routes = [
     { path: '', redirectTo: 'events', pathMatch: 'full' },
@@ -27,7 +30,10 @@ export const router: Routes = [
         { path: 'dashboard', component: DashboardComponent },
         { path: 'events', component: EventosListComponent },
         { path: 'events/add', component: EventosAddComponent },
-        { path: 'events/edit/:id', component: EventosEditComponent }
+        { path: 'events/edit/:id', component: EventosEditComponent },
+        { path: 'users', component: UsersListComponent },
+        { path: 'users/add', component: UsersAddComponent },
+        { path: 'users/edit/:id', component: UsersEditComponent },
     ]},
 
 ];

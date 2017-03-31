@@ -28,6 +28,9 @@ import { EventosEditComponent } from './admin/eventos/eventos-edit/eventos-edit.
 import { RecentEventosComponent } from './admin/dashboard/recent-eventos/recent-eventos.component';
 import { TimelineComponent } from './admin/dashboard/timeline/timeline.component';
 import { ChartjsComponent } from './admin/dashboard/chartjs/chartjs.component';
+import { UsersListComponent } from './admin/users/users-list/users-list.component';
+import { UsersAddComponent } from './admin/users/users-add/users-add.component';
+import { UsersEditComponent } from './admin/users/users-edit/users-edit.component';
 
 
 
@@ -46,7 +49,10 @@ import { ChartjsComponent } from './admin/dashboard/chartjs/chartjs.component';
     AboutComponent,
     RecentEventosComponent,
     TimelineComponent,
-    ChartjsComponent
+    ChartjsComponent,
+    UsersListComponent,
+    UsersAddComponent,
+    UsersEditComponent
   ],
   imports: [
     BrowserModule,
