@@ -1,0 +1,53 @@
+<div class="wrapper">
+
+    <form (submit)="addUser($event)">
+        <div class="box box-info">
+
+            <div class="box-header with-border">
+                <h3 class="box-title">Add User</h3>
+            </div>
+
+            <div class="box-body">
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Control</label>
+                    <div class="form-check">
+                        <label class="form-check-label" style="margin-right: 20px;">
+                            <input [(ngModel)]="user.is_administrator" type="checkbox" class="form-check-input" id="exampleInputEmail1" [ngModelOptions]="{standalone: true}">
+                            Is Admistrator
+                        </label>
+
+                        <label class="form-check-label">
+                            <input [(ngModel)]="user.is_active" type="checkbox" class="form-check-input" id="exampleInputEmail1" [ngModelOptions]="{standalone: true}">
+                            Is Active
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Full Name</label>
+                    <input [(ngModel)]="user.fullName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Full Name" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">E-mail</label>
+                    <input [(ngModel)]="user.email" type="email" class="form-control" id="exampleInputEmail1" placeholder="E-mail" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Password</label>
+                    <input [(ngModel)]="user.password" type="password" class="form-control" id="exampleInputEmail1" placeholder="Password" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Confirm Password</label>
+                    <input [(ngModel)]="confirm_password" type="password" class="form-control" id="exampleInputEmail1" placeholder="Confirm your password" [ngModelOptions]="{standalone: true}">
+                </div>                
+
+            </div>
+
+        </div>
+
+        <input type="submit" class="btn btn-info" style="margin: 2px 3px; float: right; text-transform: none !important;" value="Save">
+    </form>
+</div>
