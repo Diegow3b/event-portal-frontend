@@ -22,15 +22,20 @@ export class ChartjsComponent implements OnInit {
     listAmountShow: any;
     listAmountParty: any;
 
-    categoryList
+    categoryList: any;
 
     listEventos: any;
 
     lineChartData: any;
 
-    isDataAvailable: boolean = false;
+    isDataAvailable: boolean;
 
     monthNames: any;
+
+    lineChartOptions: any;
+    lineChartColors: any;
+    lineChartLegend: boolean;
+    lineChartType: string;
 
     constructor(private eventosService: EventosService) {
         this.eventos = {};
@@ -51,12 +56,11 @@ export class ChartjsComponent implements OnInit {
             "July", "August", "September", "October", "November", "December"
         ];
 
-        this.initializeLineChart();
-
+        this.loadBasicConfig();
     }
 
     ngOnInit() {
-
+        this.initializeLineChart();
     }
 
     defineLabels(eventos) {
@@ -74,27 +78,40 @@ export class ChartjsComponent implements OnInit {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    defineDataset(eventos, list) {
-        this.lineChartLabelsNumber.forEach(monthNumber => {
-            var group = _.filter(eventos, (evento) => { return new Date(evento.start_date).getMonth() == monthNumber });
-            list.push(group.length);
-        });
-    }
-
     unlockGraph(unlock: boolean = false) {
         this.isDataAvailable = unlock;
     }
 
-    addDataset(label, eventos, selectList) {
-        let list = selectList();
-        this.defineDataset(eventos, list);
+    getAmountByCategory(category) {
+        return new Promise((resolve, reject) => {
 
-        this.lineChartData.push({
-            data: list,
-            fill: false,
-            label: "Eventos - " + this._capitalizeFirstLetter(label)
-        });
+            let list = new Array();
 
+            this.eventosService.filterEvento({ category: category.toLowerCase() })
+                .subscribe(eventos => {
+
+                    switch (category) {
+                        case "music":
+                            list = this.listAmountMusic;
+                            break;
+                        case "show":
+                            list = this.listAmountShow;
+                            break;
+                        case "party":
+                            list = this.listAmountParty;
+                            break;
+                    }
+
+                    for (let i = 0; i < this.lineChartLabelsNumber.length; i++) {
+                        var group = _.filter(eventos, (evento) => { return new Date(evento.start_date).getMonth() == this.lineChartLabelsNumber[i] });
+                        list.push(group.length);
+                    }
+
+                    if (!eventos) reject(new Error('Error'));
+                    resolve(list);
+
+                });
+        })
     }
 
     initializeLineChart() {
@@ -102,29 +119,32 @@ export class ChartjsComponent implements OnInit {
         this.eventosService.filterEvento({})
             .subscribe(eventos => {
                 this.defineLabels(eventos);
-            });
 
-        this.categoryList.forEach((category, idx) => {
-            this.eventosService.filterEvento({ category: category.toLowerCase() })
-                .subscribe(eventos => {
-                    this.addDataset(category, eventos, () => {
-                        switch (category) {
-                            case "music":
-                                return this.listAmountMusic;
-                            case "show":
-                                return this.listAmountShow;
-                            case "party":
-                                return this.listAmountParty;
-                        }
+                // let promiseStack = new Array();
+
+                // for (let i = 0; i <= this.categoryList.length; i++) {
+                //     promiseStack.push(this.getAmountByCategory.bind(this.categoryList[i]))
+
+                // }
+
+                Promise.all(
+                    // promiseStack
+                    [this.getAmountByCategory('music'),
+                    this.getAmountByCategory('show'),
+                    this.getAmountByCategory('party')]
+                ).then((lists) => {
+                    lists.forEach((list, idx) => {
+                        this.lineChartData.push({
+                            data: list,
+                            fill: false,
+                            label: "Eventos - " + this._capitalizeFirstLetter(this.categoryList[idx])
+                        });
                     });
 
-                });
-            if (idx == this.categoryList.length - 1){
-                setTimeout(() => {
-                    this.unlockGraph(true);
-                }, 4000);
-            }
-        });
+                    if (lists) this.unlockGraph(true);
+                })
+
+            });
 
     }
 
@@ -149,50 +169,43 @@ export class ChartjsComponent implements OnInit {
         }
     }
 
+    loadBasicConfig() {
 
-    public lineChartOptions: any = {
-        responsive: true
-    };
-    public lineChartColors: Array<any> = [
-        { // grey
-            backgroundColor: 'rgba(57,204,204,0.5)',
-            borderColor: '#39cccc',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-        },
-        { // dark grey
-            backgroundColor: 'rgba(0,166,90,0.5)',
-            borderColor: '#00a65a',
-            pointBackgroundColor: 'rgba(77,83,96,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(77,83,96,1)'
-        },
-        { // grey
-            backgroundColor: 'rgba(221,75,57,0.5)',
-            borderColor: '#dd4b39',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-        }
-    ];
+        this.lineChartOptions = {
+            responsive: true
+        };
 
-    public lineChartLegend: boolean = true;
-    public lineChartType: string = 'line';
+        this.lineChartColors = [
+            {
+                backgroundColor: 'rgba(57,204,204,0.5)',
+                borderColor: '#39cccc',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            },
+            {
+                backgroundColor: 'rgba(0,166,90,0.5)',
+                borderColor: '#00a65a',
+                pointBackgroundColor: 'rgba(77,83,96,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(77,83,96,1)'
+            },
+            {
+                backgroundColor: 'rgba(221,75,57,0.5)',
+                borderColor: '#dd4b39',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            }
+        ];
 
-    // public randomize(): void {
-    //     let _lineChartData: Array<any> = new Array(this.lineChartData.length);
-    //     for (let i = 0; i < this.lineChartData.length; i++) {
-    //         _lineChartData[i] = { data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label };
-    //         for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-    //             _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-    //         }
-    //     }
-    //     this.lineChartData = _lineChartData;
-    // }
+        this.lineChartLegend = true;
+        this.lineChartType = 'line';
+
+    }
 
     // events
     public chartClicked(e: any): void {
