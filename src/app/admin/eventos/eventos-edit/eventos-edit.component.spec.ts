@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventosEditComponent } from './eventos-edit.component';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { EventosService } from '../../../services/eventos.service';
+import { HttpModule} from '@angular/http';
 
 describe('EventosEditComponent', () => {
   let component: EventosEditComponent;
@@ -8,7 +12,9 @@ describe('EventosEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventosEditComponent ]
+      declarations: [ EventosEditComponent ],
+      imports: [ FormsModule, HttpModule, RouterTestingModule ],
+      providers: [ EventosService ]
     })
     .compileComponents();
   }));

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecentEventosComponent } from './recent-eventos.component';
+import { EventosService } from '../../../services/eventos.service';
+import { HttpModule } from '@angular/http';
 
 describe('RecentEventosComponent', () => {
   let component: RecentEventosComponent;
@@ -8,7 +10,9 @@ describe('RecentEventosComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecentEventosComponent ]
+      declarations: [ RecentEventosComponent ],
+      providers: [ EventosService ],
+      imports: [ HttpModule ]
     })
     .compileComponents();
   }));

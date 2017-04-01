@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventosAddComponent } from './eventos-add.component';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { EventosService } from '../../../services/eventos.service';
+import { HttpModule} from '@angular/http';
 
 describe('EventosAddComponent', () => {
   let component: EventosAddComponent;
@@ -8,7 +12,9 @@ describe('EventosAddComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventosAddComponent ]
+      declarations: [ EventosAddComponent ],
+      imports: [ FormsModule, HttpModule, RouterTestingModule],
+      providers: [ EventosService ]
     })
     .compileComponents();
   }));

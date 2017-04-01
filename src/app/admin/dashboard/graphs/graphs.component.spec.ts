@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraphsComponent } from './graphs.component';
+import { EventosService } from '../../../services/eventos.service';
+import { HttpModule } from '@angular/http';
 
 describe('GraphsComponent', () => {
   let component: GraphsComponent;
@@ -8,7 +10,9 @@ describe('GraphsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GraphsComponent ]
+      declarations: [ GraphsComponent ],
+      providers: [ EventosService ],
+      imports: [ HttpModule ]
     })
     .compileComponents();
   }));
