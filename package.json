@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "node app.js",
     "build": "ng build",
-    "test": "ng test --watch false",
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "heroku-prebuild": "rm -rf node_modules && npm cache clean"
