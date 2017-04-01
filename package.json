@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "heroku-prebuild": "rm -rf node_modules && npm cache clean",
-    "postinstall": "ng build --aot -prod",
+    "postinstall": "ng build --aot -prod"
   },
   "engines": {
     "node": "6.4.0",
