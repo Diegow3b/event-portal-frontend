@@ -1,5 +1,4 @@
 import { ViewChild, Component, ElementRef, OnInit } from '@angular/core';
-// import Chart from 'chart.js';
 import { EventosService } from '../../../services/eventos.service';
 import { Evento } from '../../../../../class/evento';
 
