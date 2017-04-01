@@ -102,7 +102,9 @@ export class ChartjsComponent implements OnInit {
                     }
 
                     for (let i = 0; i < this.lineChartLabelsNumber.length; i++) {
-                        var group = _.filter(eventos, (evento) => { return new Date(evento.start_date).getMonth() == this.lineChartLabelsNumber[i] });
+                        var group = _.filter(eventos, (evento) => { 
+                            return new Date(evento.start_date).getMonth() == this.lineChartLabelsNumber[i]
+                        });
                         list.push(group.length);
                     }
 
@@ -119,18 +121,14 @@ export class ChartjsComponent implements OnInit {
             .subscribe(eventos => {
                 this.defineLabels(eventos);
 
-                // let promiseStack = new Array();
+                let promiseStack = new Array();
 
-                // for (let i = 0; i <= this.categoryList.length; i++) {
-                //     promiseStack.push(this.getAmountByCategory.bind(this.categoryList[i]))
-
-                // }
+                for (let i = 0; i < this.categoryList.length; i++) {
+                    promiseStack.push(this.getAmountByCategory(this.categoryList[i]))
+                }
 
                 Promise.all(
-                    // promiseStack
-                    [this.getAmountByCategory('music'),
-                    this.getAmountByCategory('show'),
-                    this.getAmountByCategory('party')]
+                    promiseStack
                 ).then((lists) => {
                     lists.forEach((list, idx) => {
                         this.lineChartData.push({
