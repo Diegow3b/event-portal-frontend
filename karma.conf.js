@@ -4,6 +4,7 @@
 module.exports = function (config) {
     var isDebug = process.env.DEBUG || false;
     var browsers = [isDebug ? 'Chrome' : 'PhantomJS'];
+    var browsers = 'PhantomJS'
 
     config.set({
         basePath: '',
