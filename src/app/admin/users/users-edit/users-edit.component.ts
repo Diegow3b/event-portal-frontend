@@ -12,6 +12,8 @@ export class UsersEditComponent implements OnInit, OnDestroy  {
 
     user: User;
 
+    confirm_password: string;
+
     private sub: any;
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) { 
@@ -44,6 +46,11 @@ export class UsersEditComponent implements OnInit, OnDestroy  {
     updateUser(event) {
         event.preventDefault();
 
+        if (this.user.password !== this.confirm_password){
+            alert("Password didn't match");
+            return false;
+        }
+        
         this.userService.updateUser(this.user)
             .subscribe(data => {
                 this.router.navigate(['/admin/users']);

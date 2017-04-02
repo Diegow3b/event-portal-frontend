@@ -149,7 +149,7 @@ export class EventosComponent implements OnInit {
         return filter
     }
 
-    filterEvents() {
+    filterEvents(event) {
         event.preventDefault();
         let dateString = this.dateFilter;
         var filter = {
@@ -209,8 +209,8 @@ export class EventosComponent implements OnInit {
             title: this.title,
             location: this.location,
             city: this.city,
-            start_date: this.start_date, /**add as Date */
-            end_date: this.end_date, /**add as Date */
+            start_date: this.start_date,
+            end_date: this.end_date,
             slug: this.slug,
             description: this.description,
             imagem: this.imagem,
@@ -252,7 +252,7 @@ export class EventosComponent implements OnInit {
         };
         this.eventosService.updateEvento(_evento)
             .subscribe(data => {
-                // TO DO Mostrar Mensagem de Alteração com Sucesso
+                
                 var eventos = this.eventos;
 
                 for (var i = 0; i < eventos.length; i++) {
@@ -267,36 +267,13 @@ export class EventosComponent implements OnInit {
         this.title = evento.title;
         this.location = evento.location;
         this.city = evento.city;
-        this.start_date = evento.start_date; /**add as Date */
-        this.end_date = evento.end_date; /**add as Date */
+        this.start_date = evento.start_date;
+        this.end_date = evento.end_date;
         this.description = evento.description;
         this.category = evento.category;
     }
 
     ngOnInit() {
-        // let categoryObservable = Observable.fromEvent(this.input_category.nativeElement, 'keyup');
-        // let cityObservable = Observable.fromEvent(this.input_city.nativeElement, 'keyup');
-
-        // categoryObservable.subscribe();
-        // cityObservable.subscribe();
     }
 
 }
-
-// @Pipe({
-//   name: 'searchPipe',
-//   pure: false
-// })
-// export class SearchPipe implements PipeTransform {
-//   transform(eventos: Evento[], searchKeys: any): any[] {
-//       let category = searchKeys.category.toLowerCase();
-//       let city = searchKeys.city.toLowerCase();
-
-//       if (!eventos) return
-
-//       return eventos.filter(item => {
-//           return item.category.toLowerCase() == category &&
-//                  item.city.toLowerCase() == city;
-//       });
-//   }
-// }

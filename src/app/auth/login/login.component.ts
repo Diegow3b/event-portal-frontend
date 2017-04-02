@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-    private email: string;
-    private password: string;
+    email: string;
+    password: string;
 
-    public hasError: boolean;
-    public errorBody: string;
+    hasError: boolean;
+    errorBody: string;
 
     constructor(private userService: UserService, private router: Router) {
         this.hasError = false;

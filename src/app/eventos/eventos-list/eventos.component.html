@@ -82,8 +82,7 @@
     <div class="row">
 
       <div id="events-grid">
-
-        <!--<div *ngFor="let evento of eventos | searchPipe: { category: input_category.value, city: input_city.value }">-->
+        
         <div *ngFor="let evento of eventos">
           <div class="col-xs-12 col-sm-6 col-md-4 singleEventBox">
             <a class="eventBoxLink" [routerLink]="['/events-detail', evento._id]">

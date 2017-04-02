@@ -2,6 +2,7 @@ export class User {
     _id: string;
     email: string;
     username: string;
+    fullName: string;
     password: string;
     created_at: Date;
     is_administrator: boolean;
